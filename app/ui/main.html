@@ -1,0 +1,20 @@
+<!DOCUMENT>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+    <script data-main="./spa/spa.js" src="./libs/requirejs/require.js"></script>
+    <script src="../interop.js"></script>
+    <link rel="stylesheet" href="./libs/bootstrap/dist/css/bootstrap.min.css" type="text/css"></link>
+    <script>
+        window.$ = window.jQuery = require(__dirname + '/libs/jquery/dist/jquery.min');
+        // require('electron').ipcRenderer.on('ping', (event, message) => {
+        //     console.log(message)
+        // });
+
+    </script>
+</head>
+  <body>
+    <home></home>
+  </body>
+</html>

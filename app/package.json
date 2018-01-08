@@ -1,0 +1,38 @@
+{
+  "name": "cloud-nine",
+  "version": "0.0.1",
+  "description": "A Raspberry Pi image viewer",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/piofthings/cloud-nine.git"
+  },
+  "author": "Pi of things",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/piofthings/cloud-nine/issues"
+  },
+  "homepage": "https://github.com/piofthings/cloud-nine#readme",
+  "dependencies": {
+    "@types/bootstrap": "^3.3.36",
+    "azure-storage": "^2.7.0",
+    "bunyan": "^1.8.12",
+    "electron": "^1.7.9",
+    "nconf": "^0.9.1"
+  },
+  "devDependencies": {
+    "@types/bunyan": "^1.8.3",
+    "@types/crossroads": "0.0.30",
+    "@types/history.js": "^1.8.16",
+    "@types/jquery": "^3.2.16",
+    "@types/knockout": "^3.4.47",
+    "@types/nconf": "0.0.35",
+    "@types/node": "^8.0.57",
+    "@types/requirejs": "^2.1.31",
+    "@types/rsvp": "^4.0.0",
+    "electron-rebuild": "^1.6.0"
+  }
+}

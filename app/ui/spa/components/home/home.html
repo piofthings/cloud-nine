@@ -1,0 +1,76 @@
+<div class="navbar navbar-default navbar-fixed-top">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <div class="navbar-brand" role="button" data-bind="click: goBack">
+                <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
+            </div>
+        </div>
+        <p class="navbar-text" data-bind="text: $component.currentComponent()"></p>
+    </div>
+</div>
+<div style="width:100%; height:100%">
+
+    <span style="position: absolute; bottom:0" data-bind="text: $component.dateTime"></span>
+    <!-- ko if: $component.loading -->
+    <loader></loader>
+    <!-- /ko -->
+    <!-- ko if: $component.currentComponent() == '' || $component.currentComponent() == 'home' -->
+    <div class="container-fluid text-center">
+        <div style="height: 25%; margin-top:12.5%">
+            <div class="row">
+                <div class="col-xs-6 ">
+                    <button class="btn btn-primary btn-block btn-lg" data-bind="click: $component.showSettings">
+                        <span class="h2">
+                            <span class="glyphicon glyphicon-picture"></span><br /><br />
+                            <span class="h3">Settings</span>
+                        </span>
+                    </buttons>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-primary btn-block btn-lg" data-bind="click: $component.showSlideshow">
+                        <span class="h2">
+                            <span class="glyphicon glyphicon-picture"></span><br /><br />
+                            <span class="h3">Slideshow</span>
+                        </span>
+                    </buttons>
+                </div>
+            </div>
+        </div>
+        <div style="height: 25%; margin-top:12.5%">
+            <div class="row">
+                <div class="col-xs-6" >
+                    <button class="btn btn-primary btn-block btn-lg" data-bind="click: $component.showRefresh">
+                        <span class="h2">
+                            <span class="glyphicon glyphicon-refresh"></span><br /><br />
+                            <span class="h3">Refresh</span>
+                        </span>
+                    </buttons>
+                </div>
+                <div class="col-xs-6">
+                    <button class="btn btn-primary btn-block btn-lg" data-bind="click: $component.showRebootScreen">
+                        <span class="h2">
+                            <span class="glyphicon glyphicon-stop"></span><br /><br />
+                            <span class="h3">Shutdown</span>
+                        </span>
+                    </buttons>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: $component.currentComponent() == 'settings' -->
+    <settings params="currentComponent: $component.currentComponent"></settings>
+    <!-- /ko -->
+
+    <!-- ko if: $component.currentComponent() == 'refresh' -->
+    <refresh params="currentComponent: $component.currentComponent"></refresh>
+    <!-- /ko -->
+
+    <!-- ko if: $component.currentComponent() == 'slide-show' -->
+    <slide-show params="currentComponent: $component.currentComponent"></slide-show>
+    <!-- /ko -->
+
+    <!-- ko if: $component.currentComponent() == 'reboot-screen' -->
+    <reboot-screen params="currentComponent: $component.currentComponent"></reboot-screen>
+    <!-- /ko -->
+</div>
