@@ -14,7 +14,7 @@ export class viewModel
         ipcRenderer.send("ui.settings.getall");
         ipcRenderer.on("on.settings.getall", (event, config: any) =>{
             console.log(JSON.stringify(config, null, " "));
-            this.configurationString(JSON.stringify(config, null, " ");
+            this.configurationString(JSON.stringify(config, null, " "));
         });
     }
 

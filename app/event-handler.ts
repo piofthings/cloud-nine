@@ -2,6 +2,7 @@
 //import { ConfigManager } from "./services/settings/config-manager";
 import { Configuration } from "./services/settings/config-model";
 import { ImageServices } from "./services/images/image-services";
+import { AzureDownloader } from "./services/azure-storage/downloader";
 import * as bunyan from "bunyan";
 
 
@@ -14,10 +15,12 @@ export class EventHandler {
     private currentWindow: Electron.BrowserWindow;
     private currentAppSettings: Configuration;
     private imageServices: ImageServices;
+    private downloaderServices: AzureDownloader;
 
     constructor(config: Configuration, logger: bunyan) {
         this.currentAppSettings = config;
         this.imageServices = new ImageServices(config, logger);
+        this.downloaderServices = new AzureDownloader(config, logger);
     }
 
     public attach = (mainWindow: Electron.BrowserWindow) => {
@@ -52,11 +55,20 @@ export class EventHandler {
         this.attachMenuServices();
         this.attachImageServices();
         this.attachConfigurationServices();
+        this.attachDownloaderServices();
     }
 
     private attachMenuServices = () => {
         this.ipcMain.on("menu.View.OnSettings", (event) => {
             event.sender.send("menu.View.Settings");
+        });
+    }
+
+    private attachDownloaderServices = () =>{
+        this.ipcMain.on("ui.download.all", (event: Electron.IpcMessageEvent) => {
+            this.downloaderServices.getImages(false, ()=>{
+
+            });
         });
     }
 

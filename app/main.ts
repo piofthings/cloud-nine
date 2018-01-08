@@ -86,7 +86,7 @@ export class main {
         if(eventType == "rename" ||
             eventType == "new"){
             //ipcRenderer.send("on.imageservice.newimage", cacheFileName);
-            this.mainWindow.webContents.send('on.imageservice.newimage', cacheFileName);
+            this.mainWindow!.webContents.send('on.imageservice.newimage', cacheFileName);
         }
     }
 
@@ -109,7 +109,7 @@ export class main {
 
         //this.mainWindow.webContents.send('ping', 'whoooooooh!');
         // Open the DevTools.
-        this.mainWindow.webContents.openDevTools();
+        //this.mainWindow.webContents.openDevTools();
 
         // Emitted when the window is closed.
         this.mainWindow.on('closed', () => {

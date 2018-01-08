@@ -24,12 +24,21 @@ export class viewModel {
         this.currentComponent("settings");
     }
 
+    private showMenu = () =>{
+        $(".navbar-default").slideDown("slow", () => {
+        });
+    }
+
     private showRefresh = () => {
-        this.currentComponent("refresh");
+        // this.currentComponent("refresh");
+        ipcRenderer.send("ui.download.all");
+        this.showSlideshow();
+
     }
 
     private showRebootScreen = () => {
-        this.currentComponent("reboot-screen");
+        ipcRenderer.send("menu.App.Quit");
+        //this.currentComponent("reboot-screen");
     }
 
     private showSlideshow = () => {
@@ -38,6 +47,7 @@ export class viewModel {
 
     private goBack = () => {
         if(this.currentComponent() != ""){
+            this.showMenu();
             this.currentComponent("home");
         }
     }

@@ -2,15 +2,13 @@ import * as ko from "knockout";
 import "text!./slide-show.html";
 export var template = require("text!./slide-show.html");
 
-export class viewModel
-{
+export class viewModel {
     private currentComponent: KnockoutObservable<string>;
-    private fileName : KnockoutObservable<string>= ko.observable( __dirname + "/../cache/WP_20161202_20_54_30_Pro.jpg");
+    private fileName: KnockoutObservable<string> = ko.observable(__dirname + "/../cache/WP_20161202_20_54_30_Pro.jpg");
     private fileNames: KnockoutObservableArray<string> = ko.observableArray<string>([]);
-
-    constructor(params: any)
-    {
-        if(params.currentComponent != null){
+    private currentTimer: NodeJS.Timer | null;
+    constructor(params: any) {
+        if (params.currentComponent != null) {
             this.currentComponent = params.currentComponent;
         }
         ipcRenderer.send("ui.slideshow.getall");
@@ -20,16 +18,43 @@ export class viewModel
 
             this.fileNames.push(fileName)
         });
+
+        this.hideNavbar();
     }
 
-    private updateFileNames = (event, fileNames: Array<string>) =>{
+    private hideNavbar = () =>{
+        $(".navbar-default").slideUp("slow", () => {
+            $('.carousel').carousel();
+        });
+    }
+
+    private showNavbar = () =>{
+        if(this.currentTimer != null){
+            clearTimeout(this.currentTimer);
+        }
+        $(".navbar-default").slideDown("slow", () => {
+            /* Replace First Div */
+            //$(this).replaceWith("<div>New Div!</div>");
+
+            this.currentTimer = setTimeout(()=>{
+                this.currentTimer = null;
+                this.hideNavbar();
+            }, 10000);
+        });
+    }
+
+    private tapped = (event) =>{
+        this.showNavbar();
+    }
+
+    private updateFileNames = (event, fileNames: Array<string>) => {
         console.log(JSON.stringify(fileNames, null, 1))
         let shouldCarousel = false;
-        if(this.fileNames().length == 0){
+        if (this.fileNames().length == 0) {
             shouldCarousel = true;
         }
         ko.utils.arrayPushAll(this.fileNames, fileNames);
-        if(shouldCarousel){
+        if (shouldCarousel) {
             $('.carousel').carousel();
         }
     }
