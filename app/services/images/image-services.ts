@@ -12,13 +12,21 @@ export class ImageServices
         this.logger = logger;
     }
 
-    public getCacheFiles = () => {
-        fs.readdir(path.join(this.configuration.rootPath, this.configuration.cacheFolderName), (err: Error, files: Array<string>)=>{
+    public getCacheFiles = (callback: (results: Array<string>) => void) => {
+        fs.readdir(path.join(this.configuration.rootPath, this.configuration.cacheFolderName), (error: Error, files: Array<string>)=>{
             if(error){
                 this.logger.error(error, "getCacheFiles");
             }
             else{
-                
+                if(callback){
+                    for (let i = 0; i < files.length; i++) {
+                        files[i] = path.join(this.configuration.rootPath, this.configuration.cacheFolderName, files[i]);
+                    }
+                    console.log(files);
+                    
+                    callback(files);
+
+                }
             }
         });
     }

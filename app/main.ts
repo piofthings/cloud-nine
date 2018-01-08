@@ -22,7 +22,7 @@ export class main {
     private configuration: Configuration;
     constructor() {
         try {
-            this.ipcMain.on('menu.App.Quit', (event, arg) => {
+            this.ipcMain.on('menu.App.Quit', () => {
                 this.quitApp();
             });
             this.logger = bunyan.createLogger({
@@ -46,7 +46,7 @@ export class main {
                 this.configuration = configuration;
 
                 app.on('ready', this.createWindow);
-                this.eventHandler = new EventHandler(configuration);
+                this.eventHandler = new EventHandler(configuration, this.logger);
 
                 // Quit when all windows are closed.
                 app.on('window-all-closed', () => {
