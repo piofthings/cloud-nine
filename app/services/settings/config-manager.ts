@@ -1,12 +1,13 @@
 import { Configuration } from "./config-model";
 import nconf = require('nconf');
 import fs = require('fs');
+import * as os from 'os';
 
 export class ConfigManager {
 
     public currentSettings = new Configuration();
     private logger: any;
-    
+
     constructor(logger: any) {
         this.logger = logger;
     }
@@ -26,6 +27,7 @@ export class ConfigManager {
                     this.currentSettings.sasTokenStartDate = new Date(nconf.get('sasTokenStartDate'));
                     this.currentSettings.sasTokenEndDate = new Date(nconf.get('sasTokenEndDate'));
                     this.currentSettings.cacheFolderName = nconf.get('cacheFolderName');
+                    this.currentSettings.ipAddresses = this.getIpAddress();
                     if (callback != null) {
                         callback(this.currentSettings);
                     }
@@ -42,6 +44,32 @@ export class ConfigManager {
             this.logger.error(error, "Error loading config");
 
         }
+    }
+
+    private getIpAddress = (): string => {
+        let ifaces = os.networkInterfaces();
+        let ipAddrString = "";
+        Object.keys(ifaces).forEach( (ifname) => {
+          var alias = 0;
+
+          ifaces[ifname].forEach((iface) => {
+            if ('IPv4' !== iface.family || iface.internal !== false) {
+              // skip over internal (i.e. 127.0.0.1) and non-ipv4 addresses
+              return;
+            }
+
+            if (alias >= 1) {
+              // this single interface has multiple ipv4 addresses
+              ipAddrString = ipAddrString + ifname + ':' + alias, iface.address;
+            } else {
+              // this interface has only one ipv4 adress
+              ipAddrString = ipAddrString + ifname + ':' + iface.address;
+            }
+            ++alias;
+          });
+        });
+        console.log("ipAddrString:" + ipAddrString );
+        return ipAddrString;
     }
 
     public set = (name: string, value: any) => {

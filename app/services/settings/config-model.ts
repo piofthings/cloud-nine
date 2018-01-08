@@ -7,4 +7,5 @@ export class Configuration
     public sasTokenEndDate: Date;
     public cacheFolderName: string;
     public rootPath: string;
+    public ipAddresses: string;
 }

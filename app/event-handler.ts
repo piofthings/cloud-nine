@@ -51,6 +51,7 @@ export class EventHandler {
 
         this.attachMenuServices();
         this.attachImageServices();
+        this.attachConfigurationServices();
     }
 
     private attachMenuServices = () => {
@@ -59,6 +60,12 @@ export class EventHandler {
         });
     }
 
+    private attachConfigurationServices = () => {
+
+        this.ipcMain.on("ui.settings.getall", (event: Electron.IpcMessageEvent) => {
+            event.sender.send("on.settings.getall", this.currentAppSettings);
+        });
+    }
     private attachImageServices = () => {
 
         this.ipcMain.on("ui.slideshow.getall", (event: Electron.IpcMessageEvent) => {

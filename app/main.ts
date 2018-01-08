@@ -74,7 +74,7 @@ export class main {
 
     private watchCache = () => {
         let cacheFolder = path.join(this.configuration.rootPath, this.configuration.cacheFolderName);
-        fs.watch(cacheFolder,  this.raiseChange));
+        fs.watch(cacheFolder,  this.raiseChange);
     }
 
     private raiseChange = (eventType:string, fileName: string)=>{
