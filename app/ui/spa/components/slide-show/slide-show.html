@@ -1,9 +1,9 @@
-<div id="carousel-example-generic" class="carousel slide">
+<div id="carousel-example-generic" class="carousel slide" style="max-width:100%; height: 100%">
     <!-- Wrapper for slides -->
     <div class="carousel-inner" role="listbox">
         <!-- ko foreach: $component.fileNames -->
         <div class="item" data-bind="css: { 'active' : $index() == 0 }">
-            <img alt="..." data-bind="attr : { src: $data }">
+            <img style="height:100%" data-bind="attr : { src: $data }">
         </div>
         <!-- /ko -->
     </div>

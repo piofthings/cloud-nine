@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from 'electron';
 //import * as azure from 'azure-storage';
+import * as fs from "fs";
 import * as path from 'path';
 import * as url from 'url';
 import * as bunyan from 'bunyan';
@@ -71,6 +72,24 @@ export class main {
         }
     }
 
+    private watchCache = () => {
+        let cacheFolder = path.join(this.configuration.rootPath, this.configuration.cacheFolderName);
+        fs.watch(cacheFolder,  this.raiseChange));
+    }
+
+    private raiseChange = (eventType:string, fileName: string)=>{
+        let cacheFolder = path.join(this.configuration.rootPath, this.configuration.cacheFolderName);
+        let cacheFileName = path.join(cacheFolder, fileName);
+        //let ipcRenderer : Electron.IpcRenderer = require('electron').ipcRenderer;
+
+        console.log(eventType + ":" + cacheFileName);
+        if(eventType == "rename" ||
+            eventType == "new"){
+            //ipcRenderer.send("on.imageservice.newimage", cacheFileName);
+            this.mainWindow.webContents.send('on.imageservice.newimage', cacheFileName);
+        }
+    }
+
     private createWindow = () => {
         // Create the browser window.
         this.mainWindow = new BrowserWindow({ width: 800, height: 600 });
@@ -98,9 +117,9 @@ export class main {
             // in an array if your app supports multi windows, this is the time
             // when you should delete the corresponding element.
             this.quitApp();
-
-
         });
+
+        this.watchCache();
     }
 
     private quitApp = () =>{

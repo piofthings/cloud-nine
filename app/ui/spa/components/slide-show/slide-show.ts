@@ -15,6 +15,11 @@ export class viewModel
         }
         ipcRenderer.send("ui.slideshow.getall");
         ipcRenderer.on("on.slideshow.getall", this.updateFileNames);
+        ipcRenderer.on('on.imageservice.newimage', (event, fileName: string) => {
+            console.log(JSON.stringify(fileName, null, 1))
+
+            this.fileNames.push(fileName)
+        });
     }
 
     private updateFileNames = (event, fileNames: Array<string>) =>{

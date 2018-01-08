@@ -31,13 +31,14 @@ export class AzureDownloader {
 
     public getImages = (force: boolean, callback: any) => {
         try {
+            let downloadedFiles: Array<string> = [];
             this.blobSvc.listBlobsSegmented("shared-photo-frame", null, (error: any, result: azure.BlobService.ListBlobsResult) => {
                 if (!error) {
                     console.log(JSON.stringify(result, null, " "));
                     if (result.entries.length > 0) {
                         for (let i = 0; i < result.entries.length; i++) {
                             try {
-                                let cacheFileName = path.resolve('.') + '/'+ this.configuration.cacheFolderName +'/' + result.entries[i].name;
+                                let cacheFileName = path.join(this.configuration.rootPath, this.configuration.cacheFolderName, result.entries[i].name);
                                 fs.stat(cacheFileName, (error: NodeJS.ErrnoException, stats: fs.Stats) => {
                                     if(error){
                                         this.logger.debug(error, { message: "fs.stat ERROR in getImages"});
@@ -50,7 +51,8 @@ export class AzureDownloader {
                                                     this.logger.error(error, "getBlobToStream errored out");
                                                 }
                                                 else {
-                                                    this.logger.error(error, "getBlobToStream errored out");
+                                                    this.logger.debug({message: "Download" + result.entries[i].name});
+                                                    downloadedFiles.push(cacheFileName);
                                                 }
                                             });
                                     }
