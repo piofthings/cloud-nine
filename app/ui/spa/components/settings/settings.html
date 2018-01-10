@@ -1,4 +1,53 @@
 <!-- component body -->
-
-<p style="margin-top: 56px; width:100%; height:100%; background-color: #FFF" data-bind="text: $component.configurationString">
-</p>
+<!-- ko if: $component.currentSettings() != null -->
+<div class="panel-body" style="margin-top: 56px; width:100%; background-color: #FFF">
+    <div class="form" >
+      <div class="form-group">
+        <label for="azureStorageHostName">Email address</label>
+        <input type="url" class="form-control" id="azureStorageHostName"
+            data-bind="textInput: $component.currentSettings().azureStorageHostName"
+            placeholder="Azure Storage host URL - e.g. https://[container].blob.core.winows.net/">
+      </div>
+      <div class="form-group">
+        <label for="containerName">Container name</label>
+        <input type="text" class="form-control"
+            data-bind="textInput: $component.currentSettings().containerName"
+            id="exampleInputPassword1" placeholder="shared-photo-frame">
+      </div>
+      <div class="form-group">
+        <label for="sasTokenSignature">SAS Token Signature</label>
+        <input type="text" class="form-control" id="sasTokenSignature"
+            data-bind="textInput: $component.currentSettings().sasTokenSignature"
+            placeholder="">
+      </div>
+      <div class="form-group">
+        <label for="containerName">Container name</label>
+        <input type="text" class="form-control" id="containerName"
+            data-bind="textInput: $component.currentSettings().containerName"
+            placeholder="shared-photo-frame">
+      </div>
+      <div class="form-group">
+        <label for="cacheFolderName">Cache folder name</label>
+        <input type="text" class="form-control" id="cacheFolderName"
+        data-bind="textInput: $component.currentSettings().cacheFolderName"
+        placeholder="cache">
+      </div>
+      <div class="form-group">
+        <label>Root path</label>
+        <label type="text" class="form-control" id="cacheFolderName"
+        data-bind="text: $component.currentSettings().rootPath"
+        placeholder="cache"></label>
+      </div>
+      <div class="form-group">
+        <label>IP Address</label>
+        <label type="text" class="form-control" id="cacheFolderName"
+        data-bind="text: $component.currentSettings().ipAddresses"
+        placeholder="cache"></label>
+      </div>
+      <button class="btn btn-primary btn-lg pull-right">Save</button>
+    </div>
+</div>
+<!-- /ko -->
+<!-- ko if: $component.currentSettings() == null -->
+<loader></loader>
+<!-- /ko -->
