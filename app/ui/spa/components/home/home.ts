@@ -57,4 +57,10 @@ export class viewModel {
             this.currentComponent("home");
         }
     }
+
+    dispose(){
+        for (let i = 0; i < this.subscriptions.length; i++) {
+            this.subscriptions[i].dispose();
+        }
+    }
 }
