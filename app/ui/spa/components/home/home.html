@@ -5,7 +5,7 @@
                 <span class="glyphicon glyphicon-arrow-left" aria-hidden="true"></span>
             </div>
         </div>
-        <p class="navbar-text" data-bind="text: $component.currentComponent()"></p>
+        <p class="navbar-text" data-bind="text: $component.header()"></p>
     </div>
 </div>
 <div style="width:100%; height:100%; background-color: #000">
@@ -59,18 +59,18 @@
     </div>
     <!-- /ko -->
     <!-- ko if: $component.currentComponent() == 'settings' -->
-    <settings params="currentComponent: $component.currentComponent"></settings>
+    <settings params="header: $component.header"></settings>
     <!-- /ko -->
 
     <!-- ko if: $component.currentComponent() == 'refresh' -->
-    <refresh params="currentComponent: $component.currentComponent"></refresh>
+    <refresh params="header: $component.header"></refresh>
     <!-- /ko -->
 
     <!-- ko if: $component.currentComponent() == 'slide-show' -->
-    <slide-show params="currentComponent: $component.currentComponent"></slide-show>
+    <slide-show params="header: $component.header"></slide-show>
     <!-- /ko -->
 
     <!-- ko if: $component.currentComponent() == 'reboot-screen' -->
-    <reboot-screen params="currentComponent: $component.currentComponent"></reboot-screen>
+    <reboot-screen params="header: $component.header"></reboot-screen>
     <!-- /ko -->
 </div>

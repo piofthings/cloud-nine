@@ -8,8 +8,8 @@ export class viewModel {
     private fileNames: KnockoutObservableArray<string> = ko.observableArray<string>([]);
     private currentTimer: NodeJS.Timer | null;
     constructor(params: any) {
-        if (params.currentComponent != null) {
-            this.currentComponent = params.currentComponent;
+        if (params.header != null) {
+            params.header("Slideshow");
         }
         ipcRenderer.send("ui.slideshow.getall");
         ipcRenderer.on("on.slideshow.getall", this.updateFileNames);

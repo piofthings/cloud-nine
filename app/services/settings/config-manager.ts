@@ -82,6 +82,7 @@ export class ConfigManager {
     }
 
     public saveSettings = (settings: Configuration) => {
+        console.log(JSON.stringify(settings));
         let keys = Object.keys(settings);
         keys.forEach((key) => {
             nconf.set(key, (<any>settings)[key]);

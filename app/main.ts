@@ -26,6 +26,9 @@ export class main {
             this.ipcMain.on('menu.App.Quit', () => {
                 this.quitApp();
             });
+            this.ipcMain.on('ui.settings.save', (event: any, settings: Configuration) =>{
+                this.configManager.saveSettings(settings);
+            })
             this.logger = bunyan.createLogger({
                 name: 'cloud-nine',
                 serializers: {

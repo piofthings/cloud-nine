@@ -11,8 +11,8 @@ export class viewModel
 
     constructor(params: any)
     {
-        if(params.currentComponent != null){
-            this.currentComponent = params.currentComponent;
+        if(params.header != null){
+            params.header("Settings");
         }
         ipcRenderer.send("ui.settings.getall");
         ipcRenderer.on("on.settings.getall", (event, config: any) =>{
@@ -21,5 +21,13 @@ export class viewModel
             this.configurationString(JSON.stringify(config, null, " "));
 
         });
+
+
+    }
+
+    private save = () => {
+        console.log(ko.toJSON(this.currentSettings()));
+        ipcRenderer.send("ui.settings.save", JSON.parse(ko.toJSON(this.currentSettings())));
+        //ipcRenderer.send()
     }
 }

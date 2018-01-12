@@ -11,9 +11,15 @@ export class viewModel {
     private dateTime : KnockoutObservable<string> = ko.observable<string>(new Date().toUTCString());
     private loading: KnockoutObservable<boolean> = ko.observable<boolean>(true);
     private currentComponent: KnockoutObservable<string> = ko.observable<string>("");
-
+    private header: KnockoutObservable<string> = ko.observable<string>("Picture Viewer");
+    private subscriptions = [];
     constructor()
     {
+        this.subscriptions.push(this.currentComponent.subscribe((newValue: string)=>{
+            if(newValue == "home" || newValue==""){
+                this.header("Picture Viewer")
+            }
+        })
         this.loading(false);
         ipcRenderer.on('ping', (event, message) => {
             console.log(message)
