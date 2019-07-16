@@ -19,10 +19,10 @@ export class viewModel {
             if(newValue == "home" || newValue==""){
                 this.header("Picture Viewer")
             }
-        })
+        }));
         this.loading(false);
         ipcRenderer.on('ping', (event, message) => {
-            console.log(message)
+            console.log(message);
         });
     }
 

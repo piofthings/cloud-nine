@@ -12,7 +12,6 @@ export class EventHandler {
     private ipcMain: Electron.IpcMain = require('electron').ipcMain;
 
 
-    private currentWindow: Electron.BrowserWindow;
     private currentAppSettings: Configuration;
     private imageServices: ImageServices;
     private downloaderServices: AzureDownloader;
@@ -24,8 +23,6 @@ export class EventHandler {
     }
 
     public attach = (mainWindow: Electron.BrowserWindow) => {
-        this.currentWindow = mainWindow;
-
         this.attachMenuServices();
         this.attachImageServices();
         this.attachConfigurationServices();
