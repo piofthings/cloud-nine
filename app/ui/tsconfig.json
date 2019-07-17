@@ -7,5 +7,9 @@
 },
   "exclude": [
       "node_modules",
+  ],
+  "include":[
+      "spa/spa.d.ts",
+      "./**.*/*.ts"
   ]
 }

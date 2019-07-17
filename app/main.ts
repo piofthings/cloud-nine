@@ -7,7 +7,7 @@ import * as bunyan from 'bunyan';
 import { ConfigManager } from './services/settings/config-manager';
 import { Configuration } from "./services/settings/config-model";
 import { AzureDownloader } from "./services/azure-storage/downloader";
-import { EventHandler } from './event-handler';
+import { EventHandler } from './services/event-handler/event-handler';
 
 //const ipcRenderer : IpcRenderer = require('electron').ipcRenderer;
 
@@ -50,7 +50,7 @@ export class main {
                 this.configuration = configuration;
 
                 app.on('ready', this.createWindow);
-                this.eventHandler = new EventHandler(configuration, this.logger);
+                this.eventHandler = new EventHandler(configuration, this.logger, this.ipcMain);
 
                 // Quit when all windows are closed.
                 app.on('window-all-closed', () => {

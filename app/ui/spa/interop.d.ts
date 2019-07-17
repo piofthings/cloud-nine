@@ -12,4 +12,4 @@ declare var app: any;
 declare var menu: Electron.Menu;
 
 //Node
-declare var __dirname: string;
+// declare var __dirname: string;

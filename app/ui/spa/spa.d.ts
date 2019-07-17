@@ -2,7 +2,7 @@ interface Document {
     app: App
 }
 
-interface Route {
+export interface Route {
     path: KnockoutObservable<string>;
     title: KnockoutObservable<string>;
     pageComponent: KnockoutObservable<string>;
@@ -14,11 +14,11 @@ interface Route {
     // rightMenuItems: KnockoutObservableArray<MenuItem>;
 }
 
-interface Router {
+export interface Router { 
 
 }
 
-interface MenuItem {
+export interface MenuItem {
     text: KnockoutObservable<string>;
     href: KnockoutObservable<string>;
     css: KnockoutObservable<string>;
@@ -29,7 +29,7 @@ interface MenuItem {
     authorizedForRoles: KnockoutObservableArray<string>;
 }
 
-interface App {
+export interface App {
     startUp: () => void;
     router: Router;
     registerRoute: (newRoute: Route) => void;

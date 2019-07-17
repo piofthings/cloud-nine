@@ -1,6 +1,4 @@
-/// <reference path="../spa.d.ts" />
-/// <reference path="../interop.d.ts"/>
-
+import "../../../interop"
 import * as ko from "knockout";
 import * as Route from "./st-route";
 import { Router } from "./st-router";

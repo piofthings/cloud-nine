@@ -14,7 +14,7 @@ class Router {
 
     constructor() {
         $(document).on('click', 'a', this.handleAnchorClick);
-        this.activateCrossroads();
+        //this.activateCrossroads();
     }
 
     public static newRouteFactory = (routePath: string, pageComponent: string, title: string, roles? : Array<string>) => {

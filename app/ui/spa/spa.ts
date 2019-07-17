@@ -1,5 +1,4 @@
-/// <reference path="spa.d.ts" />
-/// <reference path="interop.d.ts"/>
+import { StApp } from "./boot/st-app";
 
 requirejs.config(
 {
@@ -13,7 +12,6 @@ requirejs.config(
         "text": "libs/text/text",
         "historyjs": "libs/history.js/scripts/bundled/html4+html5/native.history",
         "RSVP": "libs/rsvp.js/rsvp.min",
-        // "amplify": "../libs/amplify/lib/amplify.min",
         "toastr":"libs/toastr/toastr.min",
         "bootstrap":"libs/bootstrap/dist/js/bootstrap.min",
     },
