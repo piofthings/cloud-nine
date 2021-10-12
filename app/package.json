@@ -20,7 +20,7 @@
     "@types/bootstrap": "^3.4.0",
     "azure-storage": "^2.10.3",
     "bunyan": "^1.8.12",
-    "electron": "^9.4.0",
+    "electron": "^11.5.0",
     "nconf": "^0.9.1"
   },
   "devDependencies": {
