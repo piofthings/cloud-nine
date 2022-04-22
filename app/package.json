@@ -21,7 +21,7 @@
     "azure-storage": "^2.10.3",
     "bunyan": "^1.8.12",
     "electron": "^9.4.0",
-    "nconf": "^0.9.1"
+    "nconf": "^0.11.4"
   },
   "devDependencies": {
     "@types/bunyan": "^1.8.6",
